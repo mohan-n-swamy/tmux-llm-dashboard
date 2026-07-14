@@ -142,6 +142,7 @@ status.sh --watch <pane> [cwd]  live loop: repaint 30s, track <pane>, exit when 
 |---|---|---|
 | `MMS_STATE_DIR` | `~/.local/state/tmux-llm-dashboard` | cache/state directory |
 | `MMS_HOSTS` | *(empty)* | `label:host:port` entries for row 3 |
+| `MMS_TZ` | system local time | IANA timezone for the row-9 clock, e.g. `Asia/Kolkata`, `America/New_York` (UTC is always shown alongside) |
 | `TMUX_BIN` | first `tmux` on PATH | tmux binary |
 | `GLM_KEY_FILE` | `~/.config/secrets/glm-api-key` | GLM API key file |
 | `DEEPSEEK_KEY_FILE` | `~/.config/secrets/deepseek-api-key` | DeepSeek API key file |

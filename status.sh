@@ -14,6 +14,7 @@
 # Environment:
 #   MMS_STATE_DIR   cache/state dir      (default: ~/.local/state/tmux-llm-dashboard)
 #   MMS_HOSTS       hosts to TCP-probe   (space-separated "label:host:port" entries)
+#   MMS_TZ          clock timezone       (IANA name; default: system local time)
 #   TMUX_BIN        tmux binary          (default: first tmux on PATH)
 
 emulate -LR zsh
@@ -163,10 +164,15 @@ weekly_reset_str() {
   fi
 }
 
-# Current time, local + UTC, last dashboard row.
+# Current time + UTC, last dashboard row. MMS_TZ (IANA zone name, e.g. "Asia/Kolkata"
+# or "America/New_York") pins the left clock; unset = system local time.
 time_row() {
   local loc utc
-  loc=$(date +'%a %d-%b %H:%M %Z')
+  if [[ -n "${MMS_TZ:-}" ]]; then
+    loc=$(TZ="$MMS_TZ" date +'%a %d-%b %H:%M %Z')
+  else
+    loc=$(date +'%a %d-%b %H:%M %Z')
+  fi
   utc=$(date -u +'%a %d-%b %H:%M UTC')
   print -rn -- "${GREY}now:${RESET} ${WHITE}${loc}${RESET} ${GREY}·${RESET} ${WHITE}${utc}${RESET}"
 }
