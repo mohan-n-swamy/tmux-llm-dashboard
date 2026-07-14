@@ -47,13 +47,23 @@ Every row **fails open**: missing key, missing cache, or a provider you don't us
 
 ## Install
 
+### Homebrew (recommended)
+
+```sh
+brew install mohan-n-swamy/tap/tmux-llm-dashboard
+```
+
+(If brew asks, trust the tap first: `brew trust mohan-n-swamy/tap`.) This puts a `tmux-llm-dashboard` command on your PATH — use it anywhere the docs below say `status.sh`.
+
+### From source
+
 ```sh
 git clone https://github.com/mohan-n-swamy/tmux-llm-dashboard.git
 cd tmux-llm-dashboard
 ./install.sh          # checks dependencies, makes scripts executable
 ```
 
-The repo is self-contained — run it from wherever you cloned it. State/caches go to `~/.local/state/tmux-llm-dashboard/` (override with `MMS_STATE_DIR`).
+The repo is self-contained — run it from wherever you cloned it. Either way, state/caches go to `~/.local/state/tmux-llm-dashboard/` (override with `MMS_STATE_DIR`).
 
 ### 1. Configure provider keys (only the ones you use)
 
